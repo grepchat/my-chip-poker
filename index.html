@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Игра: Расчёт фишек</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    input, button { padding: 8px; margin: 5px 0; width: 100%; }
+    .player-block { margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<h2>Настройка игры</h2>
+
+<label>Количество игроков:</label>
+<input type="number" id="playerAmount" min="1">
+
+<label>Стартовый денежный взнос (руб):</label>
+<input type="number" id="startMoney" min="1" step="0.01">
+
+<label>Количество стартовых фишек:</label>
+<input type="number" id="startChips" min="1">
+
+<button onclick="setupPlayers()">Продолжить</button>
+
+<div id="playersInput"></div>
+<div id="finalChipsInput"></div>
+<div id="results"></div>
+
+<script>
+  let players = [];
+  let startMoney = 0;
+  let startChips = 0;
+
+  function setupPlayers() {
+    const amount = parseInt(document.getElementById('playerAmount').value);
+    startMoney = parseFloat(document.getElementById('startMoney').value);
+    startChips = parseInt(document.getElementById('startChips').value);
+
+    if (isNaN(amount) || isNaN(startMoney) || isNaN(startChips)) {
+      alert("Пожалуйста, введите все значения.");
+      return;
+    }
+
+    players = [];
+    const container = document.getElementById('playersInput');
+    container.innerHTML = '<h3>Имена игроков</h3>';
+    for (let i = 0; i < amount; i++) {
+      container.innerHTML += `
+        <div class="player-block">
+          <label>Игрок #${i + 1}:</label>
+          <input type="text" id="name${i}">
+        </div>
+      `;
+    }
+    container.innerHTML += '<button onclick="submitNames()">Ввести финальные фишки</button>';
+  }
+
+  function submitNames() {
+    const amount = parseInt(document.getElementById('playerAmount').value);
+    players = [];
+    for (let i = 0; i < amount; i++) {
+      const name = document.getElementById(`name${i}`).value || `Игрок ${i+1}`;
+      players.push({ name: name, chips: startChips, finalChips: 0, money: startMoney });
+    }
+
+    const container = document.getElementById('finalChipsInput');
+    container.innerHTML = '<h3>Финальные фишки</h3>';
+    for (let i = 0; i < players.length; i++) {
+      container.innerHTML += `
+        <div class="player-block">
+          <label>${players[i].name}:</label>
+          <input type="number" id="finalChips${i}" min="0">
+        </div>
+      `;
+    }
+    container.innerHTML += '<button onclick="calculateRefunds()">Рассчитать выплаты</button>';
+  }
+
+  function calculateRefunds() {
+    let totalFinalChips = 0;
+    const results = document.getElementById('results');
+    results.innerHTML = '';
+
+    for (let i = 0; i < players.length; i++) {
+      const chips = parseInt(document.getElementById(`finalChips${i}`).value);
+      if (isNaN(chips)) {
+        alert("Введите все финальные фишки.");
+        return;
+      }
+      players[i].finalChips = chips;
+      totalFinalChips += chips;
+    }
+
+    const totalStartChips = players.length * startChips;
+
+    if (totalFinalChips !== totalStartChips) {
+      alert(`Ошибка: сумма фишек (${totalFinalChips}) не равна начальному количеству (${totalStartChips}).`);
+      return;
+    }
+
+    const costPerChip = startMoney / startChips;
+    let totalRefund = 0;
+
+    results.innerHTML = '<h3>Итоговое распределение</h3>';
+    players.forEach((player, i) => {
+      const refund = Math.round(player.finalChips * costPerChip);
+      totalRefund += refund;
+      results.innerHTML += `<p>${player.name}: ${refund} руб</p>`;
+    });
+
+    results.innerHTML += `<strong>Общая сумма возвратов: ${totalRefund} руб</strong>`;
+  }
+</script>
+
+</body>
+</html>
