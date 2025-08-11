@@ -1,0 +1,12 @@
+{
+  "name": "poker-money-calculator",
+  "version": "1.0.0",
+  "description": "Современный мобильный калькулятор фишек и выплат для покера.",
+  "main": "index.html",
+  "scripts": {
+    "start": "npx serve .",
+    "dev": "python -m http.server 8000"
+  },
+  "author": "",
+  "license": "MIT"
+}
