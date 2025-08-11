@@ -32,6 +32,7 @@
       backdrop-filter: blur(10px);
       padding: 15px 30px;
       display: flex;
+      justify-content: center;
       align-items: center;
     }
 
@@ -41,12 +42,18 @@
       gap: 15px;
     }
 
-    .logo-text {
-      font-family: 'Playfair Display', serif;
-      font-size: 24px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: #d4af37;
+    .logo svg {
+      height: 56px;
+      width: auto;
+      display: block;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    }
+    .site-logo-img {
+      height: 68px;
+      width: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
     }
 
     /* Карты и фишки в логотипе */
@@ -571,24 +578,74 @@
     .hidden {
       display: none;
     }
+
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 64px;
+  background: #181c1f;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 100;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.site-logo-link {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.site-logo-img {
+  height: 44px;
+  width: auto;
+  display: block;
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.site-nav-link {
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 8px 0;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.site-nav-link:hover,
+.site-nav-link.active {
+  color: #d4af37;
+  border-bottom: 2px solid #d4af37;
+}
   </style>
 </head>
 <body>
 
-  <!-- Хедер с логотипом -->
-  <header class="header">
-    <div class="logo">
-      <div class="logo-cards">
-        <div class="card spades">A♠</div>
-        <div class="card hearts">A♥</div>
-        <div class="card diamonds">A♦</div>
-        <div class="card clubs">A♣</div>
-      </div>
-      <div class="logo-chips">
-        <div class="chip red"></div>
-        <div class="chip blue"></div>
-      </div>
-      <div class="logo-text">Poker Money Calculator</div>
+  <!-- Новый header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="site-logo-link">
+        <img src="logo.png" alt="PMC логотип" class="site-logo-img">
+      </a>
+      <nav class="site-nav">
+        <a href="#" class="site-nav-link">Главная</a>
+        <a href="#" class="site-nav-link">Калькулятор</a>
+        <a href="#" class="site-nav-link">О проекте</a>
+        <a href="#" class="site-nav-link">Контакты</a>
+      </nav>
     </div>
   </header>
 
