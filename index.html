@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PMC — Калькулятор фишек</title>
+  <title>PMC — Калькулятор</title>
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -24,14 +24,16 @@
       <label for="startChips">Стартовые фишки</label>
       <input type="number" inputmode="numeric" id="startChips" value="1000">
     </section>
-    <section class="players-list" id="playersList">
-      <!-- игроки будут добавляться динамически -->
-    </section>
+
+    <h2 class="section-title">Финальные фишки</h2>
+    <section class="players-list" id="playersList"></section>
+
     <button class="add-player-btn" id="addPlayerBtn">+ Добавить игрока</button>
+    <button class="add-player-btn" id="computeBtn">Начать расчет</button>
+
+    <section id="results" class="results" aria-live="polite" style="margin-top:12px;"></section>
   </div>
-  <div class="sticky-cta">
-    <button id="computeBtn">Рассчитать</button>
-  </div>
+
   <nav class="bottom-nav">
     <a href="calculator.html" class="bottom-nav-btn active">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5" fill="#bfa040"/></svg>
@@ -50,6 +52,7 @@
       Шаблоны
     </a>
   </nav>
+
   <script src="main.js"></script>
 </body>
 </html>
