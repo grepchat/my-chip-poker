@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PMC — Профиль</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .card { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; margin: 12px 0; }
+    .row { display: flex; gap: 12px; align-items: center; }
+    .input { width: 100%; padding: 10px 12px; border-radius: 10px; border: none; background:#17382d; color:#fff; }
+    .btn { padding: 10px 12px; border-radius: 10px; border: none; background: #FFD166; color:#181c1f; font-weight:700; cursor:pointer; }
+    .avatar { width: 88px; height: 88px; border-radius: 50%; object-fit: cover; background:#17382d; }
+    .grid { display:grid; grid-template-columns: 1fr; gap:8px; }
+    .list { display:flex; flex-direction:column; gap:8px; }
+    .pill { padding:6px 10px; border-radius:999px; background:#17382d; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">
+      <img src="logo.png" alt="PMC логотип">
+      <span class="logo-title">PMC</span>
+    </div>
+    <a href="calculator.html" class="btn" style="text-decoration:none;">Калькулятор</a>
+  </div>
+  <div class="calc-screen" style="max-width:640px;">
+    <h2 class="section-title">Профиль</h2>
+    <div id="authCard" class="card">
+      <h3>Вход</h3>
+      <div class="grid">
+        <input id="loginEmail" class="input" placeholder="Email">
+        <input id="loginPassword" type="password" class="input" placeholder="Пароль">
+        <button id="loginBtn" class="btn">Войти</button>
+      </div>
+      <hr style="opacity:.2; margin:12px 0;">
+      <h3>Регистрация</h3>
+      <div class="grid">
+        <input id="regEmail" class="input" placeholder="Email">
+        <input id="regPassword" type="password" class="input" placeholder="Пароль">
+        <input id="regHandle" class="input" placeholder="Ник (handle)">
+        <input id="regName" class="input" placeholder="Отображаемое имя">
+        <button id="registerBtn" class="btn">Создать аккаунт</button>
+      </div>
+    </div>
+
+    <div id="profileCard" class="card" style="display:none;">
+      <div class="row">
+        <img id="avatarImg" class="avatar" alt="avatar">
+        <div style="flex:1;">
+          <div><strong id="profileName"></strong> <span class="pill" id="profileHandle"></span></div>
+          <div style="margin-top:8px;" class="row">
+            <input id="newDisplayName" class="input" placeholder="Новое имя">
+            <input id="newHandle" class="input" placeholder="Новый ник">
+            <button id="saveProfile" class="btn">Сохранить</button>
+          </div>
+          <div style="margin-top:8px;" class="row">
+            <input type="file" id="avatarFile" accept="image/*" class="input">
+            <button id="uploadAvatar" class="btn">Загрузить аватар</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="partnersCard" class="card" style="display:none;">
+      <h3>Партнёры</h3>
+      <div class="row">
+        <input id="partnerHandle" class="input" placeholder="Ник игрока">
+        <button id="addPartner" class="btn">Добавить</button>
+      </div>
+      <div id="partnersList" class="list" style="margin-top:8px;"></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { Auth, Profile } from './api.js';
+
+    const authCard = document.getElementById('authCard');
+    const profileCard = document.getElementById('profileCard');
+    const partnersCard = document.getElementById('partnersCard');
+
+    async function refresh() {
+      try {
+        const me = await Auth.me();
+        authCard.style.display = 'none';
+        profileCard.style.display = '';
+        partnersCard.style.display = '';
+        document.getElementById('profileName').textContent = me.displayName;
+        document.getElementById('profileHandle').textContent = '@' + me.handle;
+        document.getElementById('avatarImg').src = me.avatarUrl || 'logo.png';
+        loadPartners();
+      } catch {
+        authCard.style.display = '';
+        profileCard.style.display = 'none';
+        partnersCard.style.display = 'none';
+      }
+    }
+
+    document.getElementById('loginBtn').onclick = async () => {
+      await Auth.login(document.getElementById('loginEmail').value, document.getElementById('loginPassword').value);
+      refresh();
+    };
+    document.getElementById('registerBtn').onclick = async () => {
+      await Auth.register(
+        document.getElementById('regEmail').value,
+        document.getElementById('regPassword').value,
+        document.getElementById('regHandle').value,
+        document.getElementById('regName').value,
+      );
+      refresh();
+    };
+
+    document.getElementById('saveProfile').onclick = async () => {
+      await Profile.update({
+        displayName: document.getElementById('newDisplayName').value || undefined,
+        handle: document.getElementById('newHandle').value || undefined,
+      });
+      document.getElementById('newDisplayName').value = '';
+      document.getElementById('newHandle').value = '';
+      refresh();
+    };
+
+    document.getElementById('uploadAvatar').onclick = async () => {
+      const file = document.getElementById('avatarFile').files[0];
+      if (!file) return;
+      await Profile.uploadAvatar(file);
+      refresh();
+    };
+
+    async function loadPartners() {
+      const list = document.getElementById('partnersList');
+      list.innerHTML = '';
+      const items = await Profile.partners();
+      items.forEach(p => {
+        const row = document.createElement('div');
+        row.className = 'row';
+        row.innerHTML = `<span class="pill">@${p.handle}</span> <span>${p.displayName}</span> <span style="opacity:.7;">${p.status}</span>`;
+        list.appendChild(row);
+      });
+    }
+
+    document.getElementById('addPartner').onclick = async () => {
+      const h = document.getElementById('partnerHandle').value.trim();
+      if (!h) return;
+      await Profile.addPartner(h);
+      document.getElementById('partnerHandle').value = '';
+      loadPartners();
+    };
+
+    refresh();
+  </script>
+</body>
+</html>

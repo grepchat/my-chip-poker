@@ -6,18 +6,26 @@
   <title>PMC — Сессии</title>
   <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .card { background: rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; margin: 12px; }
+    .row { display:flex; justify-content:space-between; align-items:center; }
+    .btn { padding:8px 12px; border-radius:10px; background:#FFD166; color:#181c1f; border:none; font-weight:700; cursor:pointer; }
+    .muted { opacity:.75; font-size:13px; }
+  </style>
 </head>
 <body>
   <div class="topbar">
-    <div class="logo">
+    <a href="index.html" class="logo" aria-label="Главная">
       <img src="logo.png" alt="PMC логотип">
       <span class="logo-title">PMC</span>
-    </div>
-    <button class="hamburger" aria-label="Меню">☰</button>
+    </a>
+    <a href="profile.html" class="profile-link" aria-label="Профиль" title="Профиль">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+    </a>
   </div>
-  <div class="calc-screen" style="text-align:center; padding-top:80px;">
-    <h2>Раздел Сессии в разработке</h2>
-    <p>Скоро здесь появится трекер сессий и банкролла.</p>
+  <div class="calc-screen" style="max-width:720px;">
+    <h2 class="section-title">Мои сессии</h2>
+    <div id="list"></div>
   </div>
   <nav class="bottom-nav">
     <a href="calculator.html" class="bottom-nav-btn">
@@ -28,15 +36,53 @@
       <svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="3"/><rect x="8" y="10" width="8" height="2" rx="1" fill="#bfa040"/></svg>
       Турнир
     </a>
+    <a href="index.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M4 12L12 4l8 8v8H4z"/></svg>
+      Главная
+    </a>
     <a href="sessions.html" class="bottom-nav-btn active">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 7v5l4 2" stroke="#bfa040" stroke-width="2" fill="none"/></svg>
       Сессии
     </a>
     <a href="templates.html" class="bottom-nav-btn">
-      <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="2"/><rect x="14" y="4" width="6" height="6" rx="2"/><rect x="4" y="14" width="6" rx="2"/><rect x="14" y="14" width="6" height="6" rx="2"/></svg>
+      <svg viewBox="0 0 24 24"><rect x="4" y="4" width="6" height="6" rx="2"/><rect x="14" y="4" width="6" height="6" rx="2"/><rect x="4" y="14" width="6" height="6" rx="2"/><rect x="14" y="14" width="6" height="6" rx="2"/></svg>
       Шаблоны
     </a>
   </nav>
-  <script src="main.js"></script>
+
+  <script type="module">
+    import { Sessions } from './api.js';
+
+    async function load() {
+      const container = document.getElementById('list');
+      container.innerHTML = '';
+      try {
+        const items = await Sessions.listMine();
+        if (!items.length) {
+          container.innerHTML = '<div class="card">Нет сохранённых сессий</div>';
+          return;
+        }
+        items.forEach(s => {
+          const card = document.createElement('div');
+          card.className = 'card';
+          card.innerHTML = `
+            <div class="row">
+              <div>
+                <div><strong>${s.title || 'Сессия'}</strong></div>
+                <div class="muted">${new Date(s.created_at).toLocaleString('ru-RU')} • Цена фишки: ${s.cost_per_chip.toFixed(2)}</div>
+              </div>
+              <div>
+                <a class="btn" href="calculator.html#load=${s.id}">Загрузить</a>
+              </div>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+      } catch (e) {
+        container.innerHTML = '<div class="card">Авторизуйтесь, чтобы видеть историю.</div>';
+      }
+    }
+    load();
+  </script>
 </body>
 </html>
