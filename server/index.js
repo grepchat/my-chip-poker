@@ -72,6 +72,8 @@ app.use(cors({ origin: [/localhost:\d+$/], credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+// Serve static frontend
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 const JWT_SECRET = process.env.JWT_SECRET || 'dev-secret';
 function setAuthCookie(res, payload) {

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHIP — Главная</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html" class="logo" aria-label="Главная">
+      <img src="assets/img/logo.png" alt="CHIP логотип">
+      <span class="logo-title">CHIP</span>
+    </a>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <a href="profile.html" class="profile-link" aria-label="Профиль" title="Профиль">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+      <button id="openLogin" class="btn">Войти</button>
+      <button id="openRegister" class="btn alt">Зарегистрироваться</button>
+    </div>
+  </div>
+
+  <div id="authModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <div class="modal-header">
+        <div id="authTitle" class="modal-title">Аккаунт CHIP</div>
+        <button class="modal-close" id="closeAuth">Закрыть</button>
+      </div>
+      <div class="modal-body">
+        <div class="auth-tabs">
+          <div class="auth-tab active" data-tab="login">Вход</div>
+          <div class="auth-tab" data-tab="register">Регистрация</div>
+        </div>
+        <div id="authLogin" class="auth-form">
+          <input id="loginEmail" class="input" placeholder="Email"/>
+          <input id="loginPassword" type="password" class="input" placeholder="Пароль"/>
+          <div class="auth-actions">
+            <button class="auth-btn primary" id="loginBtn">Войти</button>
+            <button class="auth-btn secondary" id="toRegister">Создать</button>
+          </div>
+        </div>
+        <div id="authRegister" class="auth-form" style="display:none;">
+          <input id="regEmail" class="input" placeholder="Email"/>
+          <input id="regPassword" type="password" class="input" placeholder="Пароль"/>
+          <input id="regHandle" class="input" placeholder="Ник (handle)"/>
+          <input id="regName" class="input" placeholder="Отображаемое имя"/>
+          <div class="auth-actions">
+            <button class="auth-btn secondary" id="toLogin">Назад</button>
+            <button class="auth-btn primary" id="registerBtn">Создать аккаунт</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="home-screen">
+    <section class="hero">
+      <h1 class="hero-title">CHIP — Calculated Hands & Instant Payouts</h1>
+      <p class="hero-subtitle">Быстрые и прозрачные расчёты для ваших покерных игр. Сохраняйте сессии, приглашайте партнёров, делитесь результатами.</p>
+      <div class="hero-actions">
+        <a href="calculator.html" class="btn-large primary">Начать расчёт</a>
+        <a href="sessions.html" class="btn-large">История</a>
+      </div>
+    </section>
+
+    <section class="cards-grid">
+      <a class="card-link" href="calculator.html">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="3" width="14" height="18" rx="3"/>
+            <rect x="8" y="7" width="8" height="2" rx="1" fill="#bfa040"/>
+            <rect x="8" y="11" width="3" height="3" rx="1"/>
+            <rect x="13" y="11" width="3" height="3" rx="1"/>
+            <rect x="8" y="15" width="3" height="3" rx="1"/>
+            <rect x="13" y="15" width="3" height="3" rx="1"/>
+          </svg>
+        </div>
+        <div class="card-title">Калькулятор</div>
+        <div class="card-text">Ввод игроков, финальных фишек и денежное распределение.</div>
+      </a>
+      <a class="card-link" href="sessions.html">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 7v5l4 2" stroke="#bfa040" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="card-title">История</div>
+        <div class="card-text">Список сохранённых сессий и быстрый импорт в калькулятор.</div>
+      </a>
+      <a class="card-link" href="combinations.html">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11-8-11 3-5z"/></svg></div>
+        <div class="card-title">Комбинации</div>
+        <div class="card-text">Ранги покерных рук с примерами.</div>
+      </a>
+      <a class="card-link" href="rules.html">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24"><path d="M6 4h9a3 3 0 0 1 3 3v13H9a3 3 0 0 0-3-3H4V7a3 3 0 0 1 2-3z"/></svg>
+        </div>
+        <div class="card-title">Правила</div>
+        <div class="card-text">Краткий гид по правилам покера и основным терминам.</div>
+      </a>
+      <a class="card-link" href="poker.html">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="9" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M7 10h4M6.5 8.5h3M6.5 11.5h3" stroke="#bfa040" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="14.5" cy="13.5" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12.5 13.5h4M12 12h3M12 15h3" stroke="#bfa040" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="card-title">Онлайн покер</div>
+        <div class="card-text">Онлайн‑покер на CHIP: играйте и организуйте столы прямо на сайте (скоро).</div>
+      </a>
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="calculator.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24">
+        <rect x="5" y="3" width="14" height="18" rx="3"/>
+        <rect x="8" y="7" width="8" height="2" rx="1" fill="#bfa040"/>
+        <rect x="8" y="11" width="3" height="3" rx="1"/>
+        <rect x="13" y="11" width="3" height="3" rx="1"/>
+        <rect x="8" y="15" width="3" height="3" rx="1"/>
+        <rect x="13" y="15" width="3" height="3" rx="1"/>
+      </svg>
+      Калькулятор
+    </a>
+    <a href="index.html" class="bottom-nav-btn active">
+      <svg viewBox="0 0 24 24"><path d="M4 12L12 4l8 8v8H4z"/></svg>
+      Главная
+    </a>
+    <a href="poker.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24">
+        <circle cx="9" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M7 10h4M6.5 8.5h3M6.5 11.5h3" stroke="#bfa040" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="14.5" cy="13.5" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12.5 13.5h4M12 12h3M12 15h3" stroke="#bfa040" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Покер
+    </a>
+    <a href="combinations.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11-8-11 3-5z"/></svg>
+      Комбинации
+    </a>
+  </nav>
+
+  <script type="module">
+    import { Auth } from './assets/js/api.js';
+
+    const modal = document.getElementById('authModal');
+    const openBtn = document.getElementById('openAuth');
+    const closeBtn = document.getElementById('closeAuth');
+    const tabLogin = document.querySelector('.auth-tab[data-tab="login"]');
+    const tabRegister = document.querySelector('.auth-tab[data-tab="register"]');
+    const formLogin = document.getElementById('authLogin');
+    const formRegister = document.getElementById('authRegister');
+
+    function openModal() { modal.style.display = 'flex'; modal.setAttribute('aria-hidden','false'); }
+    function closeModal() { modal.style.display = 'none'; modal.setAttribute('aria-hidden','true'); }
+
+    openBtn?.addEventListener('click', openModal);
+    closeBtn?.addEventListener('click', closeModal);
+    modal?.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+    function setTab(which) {
+      if (which === 'login') {
+        tabLogin.classList.add('active'); tabRegister.classList.remove('active');
+        formLogin.style.display=''; formRegister.style.display='none';
+      } else {
+        tabRegister.classList.add('active'); tabLogin.classList.remove('active');
+        formRegister.style.display=''; formLogin.style.display='none';
+      }
+    }
+    tabLogin?.addEventListener('click', () => setTab('login'));
+    tabRegister?.addEventListener('click', () => setTab('register'));
+    document.getElementById('toRegister')?.addEventListener('click', () => setTab('register'));
+    document.getElementById('toLogin')?.addEventListener('click', () => setTab('login'));
+
+    document.getElementById('loginBtn')?.addEventListener('click', async () => {
+      await Auth.login(
+        document.getElementById('loginEmail').value,
+        document.getElementById('loginPassword').value
+      );
+      closeModal();
+      location.href = 'profile.html';
+    });
+    document.getElementById('registerBtn')?.addEventListener('click', async () => {
+      await Auth.register(
+        document.getElementById('regEmail').value,
+        document.getElementById('regPassword').value,
+        document.getElementById('regHandle').value,
+        document.getElementById('regName').value,
+      );
+      closeModal();
+      location.href = 'profile.html';
+    });
+</script>
+  <script type="module" src="assets/js/auth-modal.js"></script>
+  <script type="module" src="assets/js/header-auth.js"></script>
+</body>
+</html>

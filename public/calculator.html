@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHIP — Калькулятор</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html" class="logo" aria-label="Главная">
+      <img src="assets/img/logo.png" alt="CHIP логотип">
+      <span class="logo-title">CHIP</span>
+    </a>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <a href="profile.html" class="profile-link" aria-label="Профиль" title="Профиль">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+      <button id="openLogin" class="btn">Войти</button>
+      <button id="openRegister" class="btn alt">Зарегистрироваться</button>
+    </div>
+  </div>
+  <div class="calc-screen">
+    <section class="params">
+      <label for="playersCount">Игроков</label>
+      <input type="number" inputmode="numeric" min="1" value="4" id="playersCount">
+      <label for="startMoney">Стартовый взнос</label>
+      <input type="tel" inputmode="numeric" pattern="[0-9]*" id="startMoney" value="1000">
+      <label for="startChips">Стартовые фишки</label>
+      <input type="number" inputmode="numeric" id="startChips" value="1000">
+    </section>
+    <h2 class="section-title">Финальные фишки</h2>
+    <section class="players-list" id="playersList">
+      <!-- игроки будут добавляться динамически -->
+    </section>
+    <button class="add-player-btn" id="addPlayerBtn">+ Добавить игрока</button>
+    <button class="add-player-btn" id="computeBtn">Начать расчет</button>
+
+    <section id="results" class="results" aria-live="polite" style="margin-top:12px;"></section>
+  </div>
+  <nav class="bottom-nav">
+    <a href="calculator.html" class="bottom-nav-btn active">
+      <svg viewBox="0 0 24 24">
+        <rect x="5" y="3" width="14" height="18" rx="3"/>
+        <rect x="8" y="7" width="8" height="2" rx="1" fill="#bfa040"/>
+        <rect x="8" y="11" width="3" height="3" rx="1"/>
+        <rect x="13" y="11" width="3" height="3" rx="1"/>
+        <rect x="8" y="15" width="3" height="3" rx="1"/>
+        <rect x="13" y="15" width="3" height="3" rx="1"/>
+      </svg>
+      Калькулятор
+    </a>
+    <a href="index.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M4 12L12 4l8 8v8H4z"/></svg>
+      Главная
+    </a>
+    <a href="poker.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24">
+        <circle cx="9" cy="10" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M7 10h4M6.5 8.5h3M6.5 11.5h3" stroke="#bfa040" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="14.5" cy="13.5" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12.5 13.5h4M12 12h3M12 15h3" stroke="#bfa040" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      Покер
+    </a>
+    <a href="combinations.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11-8-11 3-5z"/></svg>
+      Комбинации
+    </a>
+  </nav>
+  <script src="assets/js/main.js"></script>
+  <script type="module" src="assets/js/auth-modal.js"></script>
+  <script type="module" src="assets/js/header-auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHIP — Правила покера</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html" class="logo" aria-label="Главная">
+      <img src="assets/img/logo.png" alt="CHIP логотип">
+      <span class="logo-title">CHIP</span>
+    </a>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <a href="profile.html" class="profile-link" aria-label="Профиль" title="Профиль">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+      <button id="openLogin" class="btn">Войти</button>
+      <button id="openRegister" class="btn alt">Зарегистрироваться</button>
+    </div>
+  </div>
+
+  <main class="calc-screen" style="max-width:900px;">
+    <h1 class="section-title">Правила покера</h1>
+    <section class="params" style="margin-top:12px;">
+      <div style="font-weight:700; color:#FFD166;">Цель игры</div>
+      <div style="opacity:.9; margin-top:6px;">Собрать лучшую пятикарточную комбинацию или заставить соперников сбросить карты.</div>
+    </section>
+
+    <section class="params" style="margin-top:12px;">
+      <div style="font-weight:700; color:#FFD166;">Порядок ставок</div>
+      <ul style="margin:6px 0 0 18px; opacity:.9;">
+        <li>Префлоп — две закрытые карты каждому игроку</li>
+        <li>Флоп — 3 общие карты</li>
+        <li>Тёрн — 4‑я общая карта</li>
+        <li>Ривер — 5‑я общая карта</li>
+      </ul>
+    </section>
+
+    <section class="params" style="margin-top:12px;">
+      <div style="font-weight:700; color:#FFD166;">Действия</div>
+      <ul style="margin:6px 0 0 18px; opacity:.9;">
+        <li>Check — пропустить ставку</li>
+        <li>Bet/Raise — поставить/повысить</li>
+        <li>Call — уравнять</li>
+        <li>Fold — сбросить</li>
+      </ul>
+    </section>
+
+    <div style="display:flex; gap:8px; margin:12px 0; padding:0 2px;">
+      <a href="combinations.html" class="btn-large" style="text-decoration:none;">Комбинации</a>
+      <a href="calculator.html" class="btn-large primary" style="text-decoration:none;">Перейти к расчёту</a>
+    </div>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="calculator.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5" fill="#bfa040"/></svg>
+      Калькулятор
+    </a>
+    <a href="index.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M4 12L12 4l8 8v8H4z"/></svg>
+      Главная
+    </a>
+    <a href="poker.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm0 4a6 6 0 1 1-.001 12.001A6 6 0 0 1 12 6z"/></svg>
+      Покер
+    </a>
+    <a href="combinations.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11-8-11 3-5z"/></svg>
+      Комбинации
+    </a>
+  </nav>
+
+  <script type="module" src="assets/js/auth-modal.js"></script>
+  <script type="module" src="assets/js/header-auth.js"></script>
+</body>
+</html>
+
+

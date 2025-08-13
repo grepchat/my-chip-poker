@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CHIP — Комбинации</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <a href="index.html" class="logo" aria-label="Главная">
+      <img src="assets/img/logo.png" alt="CHIP логотип">
+      <span class="logo-title">CHIP</span>
+    </a>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <a href="profile.html" class="profile-link" aria-label="Профиль" title="Профиль">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </a>
+      <button id="openLogin" class="btn">Войти</button>
+      <button id="openRegister" class="btn alt">Зарегистрироваться</button>
+    </div>
+  </div>
+
+  <main class="calc-screen" style="max-width:900px;">
+    <h1 class="section-title">Комбинации покера</h1>
+    <p style="opacity:.85;">Справочник рангов рук — сверху вниз от старшей карты до флеш‑рояля.</p>
+    <div style="display:flex; gap:8px; margin:10px 16px 0;">
+      <a href="rules.html" class="btn-large" style="text-decoration:none; background:#FFD166; color:#181c1f;">Правила</a>
+    </div>
+    <div class="suits-legend">
+      <div class="suit"><span class="icon black">♠</span> Пики</div>
+      <div class="suit"><span class="icon black">♣</span> Трефы (крести)</div>
+      <div class="suit"><span class="icon red">♥</span> Черви</div>
+      <div class="suit"><span class="icon red">♦</span> Бубны</div>
+    </div>
+
+    <section class="hands-list" style="margin-top:12px;">
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Старшая карта (High Card)</div>
+          <div class="hand-desc">Пять разномастных и не по порядку.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="s">Q♠</span></div>
+          <div class="card-mini dim"><span class="c">J♣</span></div>
+          <div class="card-mini dim"><span class="d">3♦</span></div>
+          <div class="card-mini dim"><span class="h">5♥</span></div>
+          <div class="card-mini dim"><span class="s">8♠</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Пара (One Pair)</div>
+          <div class="hand-desc">Две карты одного достоинства.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="d">A♦</span></div>
+          <div class="card-mini"><span class="h">A♥</span></div>
+          <div class="card-mini dim"><span class="d">6♦</span></div>
+          <div class="card-mini dim"><span class="s">7♠</span></div>
+          <div class="card-mini dim"><span class="s">J♠</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Две пары (Two Pair)</div>
+          <div class="hand-desc">Две разные пары + пятая карта.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="d">A♦</span></div>
+          <div class="card-mini"><span class="h">A♥</span></div>
+          <div class="card-mini"><span class="s">5♠</span></div>
+          <div class="card-mini"><span class="c">5♣</span></div>
+          <div class="card-mini dim"><span class="h">3♥</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Сет / Тройка (Three of a Kind)</div>
+          <div class="hand-desc">Три карты одного достоинства.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="d">8♦</span></div>
+          <div class="card-mini"><span class="s">8♠</span></div>
+          <div class="card-mini"><span class="c">8♣</span></div>
+          <div class="card-mini dim"><span class="d">6♦</span></div>
+          <div class="card-mini dim"><span class="s">K♠</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Стрит (Straight)</div>
+          <div class="hand-desc">Пять карт по порядку, масти произвольные.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="h">7♥</span></div>
+          <div class="card-mini"><span class="c">8♣</span></div>
+          <div class="card-mini"><span class="d">9♦</span></div>
+          <div class="card-mini"><span class="d">10♦</span></div>
+          <div class="card-mini"><span class="h">J♥</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Флеш (Flush)</div>
+          <div class="hand-desc">Пять карт одной масти.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="c">A♣</span></div>
+          <div class="card-mini"><span class="c">J♣</span></div>
+          <div class="card-mini"><span class="c">7♣</span></div>
+          <div class="card-mini"><span class="c">4♣</span></div>
+          <div class="card-mini"><span class="c">2♣</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Фулл-хаус (Full House)</div>
+          <div class="hand-desc">Тройка + пара.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="s">8♠</span></div>
+          <div class="card-mini"><span class="s">8♠</span></div>
+          <div class="card-mini"><span class="c">8♣</span></div>
+          <div class="card-mini"><span class="d">A♦</span></div>
+          <div class="card-mini"><span class="h">A♥</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Каре (Four of a Kind)</div>
+          <div class="hand-desc">Четыре карты одного достоинства.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="d">5♦</span></div>
+          <div class="card-mini"><span class="h">5♥</span></div>
+          <div class="card-mini"><span class="s">5♠</span></div>
+          <div class="card-mini"><span class="c">5♣</span></div>
+          <div class="card-mini dim"><span class="s">J♠</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Стрит‑флеш (Straight Flush)</div>
+          <div class="hand-desc">Пять карт по порядку одной масти.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="h">7♥</span></div>
+          <div class="card-mini"><span class="h">8♥</span></div>
+          <div class="card-mini"><span class="h">9♥</span></div>
+          <div class="card-mini"><span class="h">10♥</span></div>
+          <div class="card-mini"><span class="h">J♥</span></div>
+        </div>
+      </div>
+
+      <div class="poker-hand">
+        <div>
+          <div class="hand-name">Флеш‑рояль (Royal Flush)</div>
+          <div class="hand-desc">10‑J‑Q‑K‑A одной масти.</div>
+        </div>
+        <div class="cards-row">
+          <div class="card-mini"><span class="s">10♠</span></div>
+          <div class="card-mini"><span class="s">J♠</span></div>
+          <div class="card-mini"><span class="s">Q♠</span></div>
+          <div class="card-mini"><span class="s">K♠</span></div>
+          <div class="card-mini"><span class="s">A♠</span></div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="calculator.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5" fill="#bfa040"/></svg>
+      Калькулятор
+    </a>
+    <a href="index.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M4 12L12 4l8 8v8H4z"/></svg>
+      Главная
+    </a>
+    <a href="poker.html" class="bottom-nav-btn">
+      <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 .001 20.001A10 10 0 0 0 12 2zm0 4a6 6 0 1 1-.001 12.001A6 6 0 0 1 12 6z"/></svg>
+      Покер
+    </a>
+    <a href="combinations.html" class="bottom-nav-btn active">
+      <svg viewBox="0 0 24 24"><path d="M7 4h10l3 5-8 11-8-11 3-5z"/></svg>
+      Комбинации
+    </a>
+  </nav>
+
+  <script type="module" src="assets/js/auth-modal.js"></script>
+  <script type="module" src="assets/js/header-auth.js"></script>
+</body>
+</html>
+
+
