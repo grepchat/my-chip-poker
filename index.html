@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Калькулятор фишек для покера - быстрый расчет выплат">
+  <title>CHIP — Калькулятор фишек</title>
+  <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="topbar">
+    <div class="logo">
+      <span class="logo-title">CHIP</span>
+    </div>
+  </div>
+  
+  <div class="calc-screen">
+    <section class="params">
+      <label for="playersCount">Игроков</label>
+      <input type="number" inputmode="numeric" min="1" value="4" id="playersCount">
+      <label for="startMoney">Стартовый взнос</label>
+      <input type="tel" inputmode="numeric" pattern="[0-9]*" id="startMoney" value="1000">
+      <label for="startChips">Стартовые фишки</label>
+      <input type="number" inputmode="numeric" id="startChips" value="1000">
+    </section>
+    
+    <h2 class="section-title">Финальные фишки</h2>
+    <section class="players-list" id="playersList">
+      <!-- игроки будут добавляться динамически -->
+    </section>
+    
+    <button class="add-player-btn" id="addPlayerBtn">+ Добавить игрока</button>
+    <button class="add-player-btn" id="computeBtn">Начать расчет</button>
+
+    <section id="results" class="results" aria-live="polite" style="margin-top:12px;"></section>
+  </div>
+
+  <script src="calculator.js"></script>
+</body>
+</html>
+
